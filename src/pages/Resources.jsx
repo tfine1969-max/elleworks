@@ -5,45 +5,38 @@ import { Download, BookOpen, FileText } from "lucide-react";
 const RESOURCES = [
   {
     id: 1,
-    title: "Financial Planning Essentials",
+    title: "5 financial must-dos for every woman",
     type: "Guide",
-    desc: "A comprehensive guide to getting started with financial planning",
-    file: "financial-planning-guide.pdf",
+    desc: "Essential financial steps every woman should take",
+    file: "5-must-dos.pdf",
   },
   {
     id: 2,
-    title: "Women & Wealth: Building Confidence",
+    title: "How to start investing in South Africa",
     type: "Article",
-    desc: "Explore the psychology of wealth building and confidence",
-    file: "women-wealth-confidence.pdf",
+    desc: "A beginner's guide to investing locally",
+    file: "investing-sa.pdf",
   },
   {
     id: 3,
-    title: "Investment Basics for Beginners",
+    title: "Divorce and your finances — what you need to know",
     type: "Guide",
-    desc: "Understand stocks, bonds, and diversification in simple terms",
-    file: "investment-basics.pdf",
+    desc: "Navigate financial decisions during separation",
+    file: "divorce-finances.pdf",
   },
   {
     id: 4,
-    title: "Retirement Planning Checklist",
-    type: "Worksheet",
-    desc: "A practical checklist to guide your retirement planning journey",
-    file: "retirement-checklist.pdf",
+    title: "Salary negotiation scripts that actually work",
+    type: "Guide",
+    desc: "Practical scripts and tactics for negotiating your worth",
+    file: "salary-scripts.pdf",
   },
   {
     id: 5,
-    title: "Tax-Efficient Wealth Building",
-    type: "Guide",
-    desc: "Strategies to optimize your tax position and keep more of your wealth",
-    file: "tax-strategies.pdf",
-  },
-  {
-    id: 6,
-    title: "Protecting Your Financial Future",
+    title: "Planning for retirement in your 30s, 40s and 50s",
     type: "Article",
-    desc: "Insurance, emergency funds, and risk management essentials",
-    file: "financial-protection.pdf",
+    desc: "Stage-specific retirement planning strategies",
+    file: "retirement-stages.pdf",
   },
 ];
 
@@ -65,11 +58,11 @@ export default function Resources() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl font-semibold text-accent mb-6">
-              Resources
+            <h1 className="text-4xl md:text-5xl font-semibold text-accent mb-4">
+              Free resources
             </h1>
             <p className="text-lg text-muted-foreground">
-              Free guides, articles, and tools to support your financial journey
+              Guides, tools and articles to help you take control of your finances — at your own pace.
             </p>
           </motion.div>
         </div>
@@ -79,7 +72,7 @@ export default function Resources() {
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap gap-3 justify-center">
-            {["All", "Guide", "Article", "Worksheet"].map((type) => (
+            {["All", "Guide", "Article"].map((type) => (
               <button
                 key={type}
                 onClick={() => setFilter(type)}

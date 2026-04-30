@@ -56,11 +56,11 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl font-semibold text-accent mb-6">
-              Get in Touch
+            <h1 className="text-4xl md:text-5xl font-semibold text-accent mb-4">
+              Let's talk
             </h1>
             <p className="text-lg text-muted-foreground">
-              Let's discuss how we can help you with your financial journey
+              Whether you have a question, want to book a consultation, or just want to find out more — we'd love to hear from you.
             </p>
           </motion.div>
         </div>
@@ -93,7 +93,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <Label htmlFor="name" className="text-sm font-medium text-foreground">
-                    Name
+                    Full name
                   </Label>
                   <Input
                     id="name"
@@ -108,7 +108,7 @@ export default function Contact() {
 
                 <div>
                   <Label htmlFor="email" className="text-sm font-medium text-foreground">
-                    Email
+                    Email address
                   </Label>
                   <Input
                     id="email"
@@ -123,8 +123,20 @@ export default function Contact() {
                 </div>
 
                 <div>
+                  <Label htmlFor="phone" className="text-sm font-medium text-foreground">
+                    Phone number <span className="text-muted-foreground">(optional)</span>
+                  </Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="Your phone number"
+                    className="mt-2 h-11"
+                  />
+                </div>
+
+                <div>
                   <Label htmlFor="interest" className="text-sm font-medium text-foreground">
-                    What are you interested in?
+                    I am interested in:
                   </Label>
                   <Select value={form.interest} onValueChange={handleInterestChange}>
                     <SelectTrigger className="mt-2 h-11">
@@ -132,9 +144,9 @@ export default function Contact() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="financial-planning">Financial Planning</SelectItem>
-                      <SelectItem value="training">Training</SelectItem>
-                      <SelectItem value="workshop">Workshop</SelectItem>
-                      <SelectItem value="general">General Inquiry</SelectItem>
+                      <SelectItem value="financial-training">Financial Training</SelectItem>
+                      <SelectItem value="workshops">Workshops</SelectItem>
+                      <SelectItem value="general">General enquiry</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -160,10 +172,21 @@ export default function Contact() {
                   disabled={submitting}
                   className="w-full h-11 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-60"
                 >
-                  {submitting ? "Sending..." : "Send Message"}
+                  {submitting ? "Sending..." : "Send my message"}
                 </button>
               </form>
             )}
+          </motion.div>
+
+          {/* Footer text */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mt-12 text-sm text-muted-foreground space-y-2"
+          >
+            <p>Prefer to connect on LinkedIn? Find us at elleworks.</p>
+            <p>elleworks is a service of wealthworks.co.za</p>
           </motion.div>
         </div>
       </section>
