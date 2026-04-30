@@ -14,6 +14,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Workshops from './pages/Workshops';
+import AdminWorkshops from './pages/AdminWorkshops';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -43,8 +45,10 @@ const AuthenticatedApp = () => {
         <Route path="/resources" element={<Resources />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+      <Route path="/workshops" element={<Workshops />} />
       </Route>
       <Route path="/register" element={<Register />} />
+      <Route path="/admin/workshops" element={<AdminWorkshops />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>

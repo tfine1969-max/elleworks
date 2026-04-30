@@ -1,0 +1,61 @@
+{
+  "name": "Workshop",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Workshop title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Workshop description (2 sentences)"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time of workshop"
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "Online",
+        "In-person"
+      ],
+      "description": "Workshop format"
+    },
+    "location": {
+      "type": "string",
+      "description": "Location (for in-person workshops)"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in ZAR (0 for free)"
+    },
+    "total_spots": {
+      "type": "number",
+      "description": "Total number of spots available"
+    },
+    "booked_spots": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of spots booked"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "upcoming",
+        "cancelled"
+      ],
+      "default": "upcoming",
+      "description": "Workshop status"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "date",
+    "format",
+    "price",
+    "total_spots"
+  ]
+}
