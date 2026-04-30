@@ -35,8 +35,12 @@ export default function Navbar() {
       style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
     >
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-[72px]">
-        <Link to="/" className="font-poppins text-xl font-semibold tracking-tight text-secondary">
-          elleworks
+        <Link to="/" className="flex items-center">
+          <img
+            src="https://media.base44.com/images/public/69f3412ade1e350134cfae3e/288089ee0_elleworks.png"
+            alt="Elleworks"
+            className="h-8 w-auto"
+          />
         </Link>
 
         {/* Desktop nav */}

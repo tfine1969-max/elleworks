@@ -7,7 +7,11 @@ export default function Footer() {
       <div className="max-w-[1200px] mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
-            <p className="font-poppins text-lg font-semibold mb-4">elleworks</p>
+            <img
+            src="https://media.base44.com/images/public/69f3412ade1e350134cfae3e/288089ee0_elleworks.png"
+            alt="Elleworks"
+            className="h-6 w-auto mb-4"
+          />
             <p className="text-sm text-secondary-foreground/60 leading-relaxed max-w-xs">
               Structured financial planning and education for women who seek clarity and control.
             </p>
