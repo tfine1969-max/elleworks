@@ -4,18 +4,23 @@ import { base44 } from "@/api/base44Client";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
-
-const fadeIn = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-};
 
 export default function Contact() {
   const { toast } = useToast();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+    interest: "",
+  });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -23,48 +28,71 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const handleInterestChange = (value) => {
+    setForm({ ...form, interest: value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!form.interest) {
+      toast({ title: "Please select what you're interested in" });
+      return;
+    }
     setSubmitting(true);
     await base44.entities.ContactInquiry.create(form);
     setSubmitting(false);
     setSubmitted(true);
-    toast({ title: "Request received", description: "We'll be in touch shortly." });
+    toast({ title: "Message sent", description: "We'll be in touch soon!" });
   };
 
   return (
     <div className="pt-[72px]">
       {/* Hero */}
-      <section className="bg-muted">
-        <div className="section-container py-20 md:py-28">
-          <motion.div {...fadeIn} className="max-w-3xl mx-auto text-center">
-            <p className="text-xs font-inter font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4">
-              Contact
-            </p>
-            <h1 className="font-poppins text-4xl sm:text-5xl font-semibold text-secondary leading-tight">
+      <section className="py-20 bg-muted">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <h1 className="text-4xl md:text-5xl font-semibold text-accent mb-6">
               Get in Touch
             </h1>
+            <p className="text-lg text-muted-foreground">
+              Let's discuss how we can help you with your financial journey
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* Form */}
-      <section>
-        <div className="section-container">
-          <motion.div {...fadeIn} className="max-w-lg mx-auto">
+      <section className="py-20 bg-white">
+        <div className="max-w-2xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
             {submitted ? (
-              <div className="text-center py-12">
-                <h2 className="font-poppins text-2xl font-medium text-secondary mb-3">
-                  Thank you
+              <div className="text-center py-16">
+                <h2 className="text-2xl font-semibold text-accent mb-3">
+                  Thank you!
                 </h2>
-                <p className="font-inter text-base text-muted-foreground">
-                  Your request has been received. We'll be in touch shortly.
+                <p className="text-muted-foreground mb-6">
+                  We've received your message and will be in touch within 2 business days.
                 </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="text-primary font-medium hover:text-primary/80"
+                >
+                  Send another message
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="font-inter text-sm font-medium text-foreground">
+                <div>
+                  <Label htmlFor="name" className="text-sm font-medium text-foreground">
                     Name
                   </Label>
                   <Input
@@ -74,11 +102,12 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Your full name"
-                    className="h-12 font-inter"
+                    className="mt-2 h-11"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="font-inter text-sm font-medium text-foreground">
+
+                <div>
+                  <Label htmlFor="email" className="text-sm font-medium text-foreground">
                     Email
                   </Label>
                   <Input
@@ -89,11 +118,29 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="your@email.com"
-                    className="h-12 font-inter"
+                    className="mt-2 h-11"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="font-inter text-sm font-medium text-foreground">
+
+                <div>
+                  <Label htmlFor="interest" className="text-sm font-medium text-foreground">
+                    What are you interested in?
+                  </Label>
+                  <Select value={form.interest} onValueChange={handleInterestChange}>
+                    <SelectTrigger className="mt-2 h-11">
+                      <SelectValue placeholder="Select an option" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="financial-planning">Financial Planning</SelectItem>
+                      <SelectItem value="training">Training</SelectItem>
+                      <SelectItem value="workshop">Workshop</SelectItem>
+                      <SelectItem value="general">General Inquiry</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="message" className="text-sm font-medium text-foreground">
                     Message
                   </Label>
                   <Textarea
@@ -102,18 +149,18 @@ export default function Contact() {
                     value={form.message}
                     onChange={handleChange}
                     required
-                    placeholder="How can we help?"
+                    placeholder="Tell us more about your situation..."
                     rows={5}
-                    className="font-inter resize-none"
+                    className="mt-2"
                   />
                 </div>
+
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full h-12 bg-primary text-primary-foreground font-inter text-sm font-medium rounded-lg hover:shadow-lg hover:shadow-primary/20 transition-all duration-500 disabled:opacity-60"
-                  style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
+                  className="w-full h-11 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-60"
                 >
-                  {submitting ? "Sending..." : "Request Information"}
+                  {submitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
             )}

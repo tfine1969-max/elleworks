@@ -8,9 +8,12 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 
 import SiteLayout from './components/layout/SiteLayout';
 import Home from './pages/Home';
-import Programmes from './pages/Programmes';
+import Services from './pages/Services';
+import Resources from './pages/Resources';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -36,10 +39,13 @@ const AuthenticatedApp = () => {
     <Routes>
       <Route element={<SiteLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/programmes" element={<Programmes />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/resources" element={<Resources />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
+      <Route path="/register" element={<Register />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
