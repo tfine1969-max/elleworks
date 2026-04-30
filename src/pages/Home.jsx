@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Clock, DollarSign, Heart, Users } from "lucide-react";
+import QuizWidget from "@/components/home/QuizWidget";
 
 const PILLARS = [
   {
@@ -79,6 +80,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Quiz Widget */}
+      <QuizWidget />
 
       {/* Quote */}
       <section className="py-24 bg-muted">

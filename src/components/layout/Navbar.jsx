@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Resources", path: "/resources" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
+  { label: "Quiz", path: "/quiz" },
 ];
 
 export default function Navbar() {
