@@ -1,0 +1,58 @@
+{
+  "name": "QuizResult",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Lead email address"
+    },
+    "full_name": {
+      "type": "string",
+      "description": "Lead full name"
+    },
+    "answers": {
+      "type": "array",
+      "description": "Array of answer indices for each question",
+      "items": {
+        "type": "number"
+      }
+    },
+    "score": {
+      "type": "number",
+      "description": "Total quiz score out of 32"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Financial go-getter",
+        "On the right track",
+        "Building your base",
+        "Let's start from scratch"
+      ],
+      "description": "Quiz result category"
+    },
+    "wants_newsletter": {
+      "type": "boolean",
+      "default": false,
+      "description": "Opted in for financial tips and workshop invites"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "converted"
+      ],
+      "default": "new",
+      "description": "Follow-up status"
+    }
+  },
+  "required": [
+    "email",
+    "full_name",
+    "answers",
+    "score",
+    "category"
+  ]
+}

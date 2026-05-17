@@ -1,0 +1,53 @@
+{
+  "name": "WorkshopBooking",
+  "type": "object",
+  "properties": {
+    "workshop_id": {
+      "type": "string",
+      "description": "ID of the workshop"
+    },
+    "full_name": {
+      "type": "string",
+      "description": "Attendee full name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Attendee email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Attendee phone number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "booked",
+        "waitlist",
+        "cancelled"
+      ],
+      "default": "booked",
+      "description": "Booking status"
+    },
+    "payment_required": {
+      "type": "boolean",
+      "description": "Whether payment is required"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "paid",
+        "not_required"
+      ],
+      "default": "not_required",
+      "description": "Payment status"
+    }
+  },
+  "required": [
+    "workshop_id",
+    "full_name",
+    "email",
+    "phone"
+  ]
+}
